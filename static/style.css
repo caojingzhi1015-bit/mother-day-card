@@ -1,0 +1,475 @@
+:root {
+    --bg-start: #fff5f7;
+    --bg-end: #ffffff;
+    --text-primary: #8b4557;
+    --text-secondary: rgba(139, 69, 87, 0.72);
+    --text-light: rgba(139, 69, 87, 0.52);
+    --panel-bg: rgba(255, 250, 251, 0.76);
+    --panel-border: rgba(255, 255, 255, 0.85);
+    --theme-color: #ffe6ee;
+    --theme-color-deep: #f7c8d7;
+    --button-start: #ffb6c1;
+    --button-end: #dda0dd;
+    --shadow-color: rgba(221, 160, 221, 0.24);
+    --input-bg: rgba(255, 255, 255, 0.5);
+    --max-width: 400px;
+    --transition-smooth: 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    font-family: "Inter", "PingFang SC", "SF Pro Rounded", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, var(--bg-start), var(--bg-end));
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background var(--transition-smooth), color var(--transition-smooth);
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 214, 226, 0.45), transparent 35%),
+        radial-gradient(circle at 80% 25%, rgba(238, 220, 255, 0.35), transparent 34%),
+        radial-gradient(circle at 50% 85%, rgba(255, 241, 230, 0.5), transparent 36%);
+    pointer-events: none;
+    z-index: -4;
+}
+
+.background-blur,
+.wave-layer {
+    position: fixed;
+    pointer-events: none;
+    z-index: -3;
+}
+
+.background-blur {
+    width: 48vw;
+    height: 48vw;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.45;
+    animation: floatGlow 16s ease-in-out infinite;
+}
+
+.background-blur-left {
+    left: -8vw;
+    top: 8vh;
+    background: rgba(255, 201, 214, 0.42);
+}
+
+.background-blur-right {
+    right: -12vw;
+    bottom: 12vh;
+    background: rgba(232, 212, 255, 0.35);
+    animation-delay: -6s;
+}
+
+.wave-layer {
+    inset: -15% -10%;
+    opacity: 0.15;
+    background:
+        radial-gradient(ellipse at 25% 30%, rgba(255, 196, 214, 0.5), transparent 42%),
+        radial-gradient(ellipse at 70% 45%, rgba(225, 190, 231, 0.42), transparent 44%),
+        radial-gradient(ellipse at 40% 75%, rgba(255, 234, 222, 0.4), transparent 40%);
+    filter: blur(30px);
+}
+
+.wave-layer-one {
+    animation: driftWave 18s ease-in-out infinite alternate;
+}
+
+.wave-layer-two {
+    animation: driftWaveReverse 24s ease-in-out infinite alternate;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px 32px;
+}
+
+.view {
+    width: 100%;
+    max-width: var(--max-width);
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.view-active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    transform: translateY(0);
+}
+
+.glass-panel,
+.bouquet-card {
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    transition: background var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.hero-panel {
+    width: 100%;
+    min-height: min(72vh, 620px);
+    padding: 44px 24px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow:
+        0 18px 40px rgba(191, 143, 159, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        inset 0 -12px 24px rgba(255, 246, 248, 0.82);
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.subtitle {
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-secondary);
+}
+
+.name-form {
+    width: 100%;
+    margin-top: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+input {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 16px 18px;
+    font: inherit;
+    color: var(--text-primary);
+    background: var(--input-bg);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.85),
+        inset 0 -8px 16px rgba(255, 247, 250, 0.65),
+        0 10px 24px rgba(196, 162, 176, 0.12);
+    outline: none;
+    transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth), background var(--transition-smooth), transform var(--transition-smooth);
+}
+
+input::placeholder {
+    color: rgba(139, 69, 87, 0.38);
+}
+
+input:focus {
+    border-color: rgba(221, 160, 221, 0.72);
+    box-shadow:
+        0 0 0 4px rgba(255, 219, 232, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        0 14px 28px rgba(196, 162, 176, 0.16);
+    transform: translateY(-1px);
+}
+
+.primary-button {
+    width: 100%;
+    border: none;
+    border-radius: 16px;
+    padding: 16px 20px;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--button-start), var(--button-end));
+    box-shadow:
+        0 16px 30px rgba(221, 160, 221, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.2s ease, box-shadow var(--transition-smooth), filter var(--transition-smooth), background var(--transition-smooth);
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.9);
+    box-shadow:
+        0 20px 34px rgba(221, 160, 221, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.primary-button:active,
+.primary-button.is-pressed {
+    transform: scale(0.95);
+    filter: brightness(0.94);
+}
+
+.primary-button:focus-visible,
+input:focus-visible {
+    outline: none;
+}
+
+.card-layout {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.card-header {
+    text-align: center;
+    padding: 6px 10px 0;
+}
+
+.card-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.bouquet-card {
+    width: 90%;
+    max-width: 360px;
+    border-radius: 24px;
+    padding: 4px;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(255, 250, 251, 0.7)),
+        linear-gradient(135deg, var(--theme-color), rgba(255, 255, 255, 0.7));
+    box-shadow:
+        0 22px 42px var(--shadow-color),
+        0 0 0 1px rgba(255, 255, 255, 0.75),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+
+.card-inner {
+    border-radius: 20px;
+    background: #fffafb;
+    padding: 30px 22px;
+    box-shadow:
+        inset 0 12px 20px rgba(255, 255, 255, 0.68),
+        inset 0 -12px 20px rgba(248, 234, 239, 0.72),
+        0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.bouquet-frame {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bouquet-illustration {
+    width: 100%;
+    max-width: 250px;
+    height: 180px;
+}
+
+.bouquet-illustration svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.card-copy {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.flower-name {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.flower-language {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+
+.flower-language-zh {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(139, 69, 87, 0.62);
+    line-height: 1.5;
+}
+
+.flower-language-en {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(139, 69, 87, 0.42);
+    line-height: 1.5;
+}
+
+.card-message {
+    display: none;
+    margin-top: 14px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.secondary-width {
+    width: 80%;
+    max-width: 280px;
+}
+
+.card-animate {
+    animation: cardLift 0.4s ease;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@keyframes driftWave {
+    0% {
+        transform: translate3d(-2%, -1%, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(3%, 4%, 0) scale(1.06);
+    }
+}
+
+@keyframes driftWaveReverse {
+    0% {
+        transform: translate3d(2%, 3%, 0) scale(1.02);
+    }
+    100% {
+        transform: translate3d(-4%, -2%, 0) scale(1.08);
+    }
+}
+
+@keyframes floatGlow {
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-12px) scale(1.06);
+    }
+}
+
+@keyframes cardLift {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 430px) {
+    .app-shell {
+        padding: 20px 14px 28px;
+    }
+
+    .hero-panel {
+        min-height: min(70vh, 560px);
+        padding: 38px 20px;
+        border-radius: 28px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .subtitle,
+    .flower-language-zh,
+    .card-message,
+    input,
+    .primary-button {
+        font-size: 15px;
+    }
+
+    .flower-language-en {
+        font-size: 11px;
+    }
+
+    .card-header h2 {
+        font-size: 22px;
+    }
+
+    .bouquet-card {
+        width: 100%;
+    }
+
+    .card-inner {
+        padding: 26px 18px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-panel {
+        min-height: 66vh;
+        padding: 32px 18px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .card-header h2 {
+        font-size: 20px;
+    }
+
+    .flower-name {
+        font-size: 17px;
+    }
+
+    .secondary-width {
+        width: 100%;
+    }
+}
