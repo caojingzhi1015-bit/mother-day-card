@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>母亲节专属礼物</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="background-blur background-blur-left"></div>
+    <div class="background-blur background-blur-right"></div>
+    <div class="wave-layer wave-layer-one"></div>
+    <div class="wave-layer wave-layer-two"></div>
+
+    <main class="app-shell">
+        <section class="view view-active" id="input-view">
+            <div class="glass-panel hero-panel">
+                <p class="eyebrow">Mother's Day</p>
+                <h1>你的专属礼物</h1>
+                <p class="subtitle">为你准备了一束特别的花</p>
+                <form id="name-form" class="name-form">
+                    <label class="sr-only" for="name-input">请输入妈妈的名字</label>
+                    <input id="name-input" name="name" type="text" maxlength="10" placeholder="请输入妈妈的名字" autocomplete="off" required>
+                    <button type="submit" class="primary-button">开启惊喜</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="view" id="card-view" aria-hidden="true">
+            <div class="card-layout">
+                <header class="card-header">
+                    <p class="eyebrow">Mother's Day Special</p>
+                    <h2 id="greeting-title">妈妈小姐 母亲节快乐</h2>
+                </header>
+
+                <article class="bouquet-card" id="bouquet-card">
+                    <div class="card-inner">
+                        <div class="bouquet-frame">
+                            <div id="bouquet-illustration" class="bouquet-illustration" aria-hidden="true"></div>
+                        </div>
+                        <div class="card-copy">
+                            <p class="flower-name" id="flower-name">粉色康乃馨</p>
+                            <div class="flower-language">
+                                <p class="flower-language-zh" id="flower-language-zh">💐 妈妈的碎碎念念，温暖了我的岁岁年年</p>
+                                <p class="flower-language-en" id="flower-language-en">Mom's little words warm my whole life</p>
+                            </div>
+                            <p class="card-message" id="card-message">💐 妈妈的碎碎念念，温暖了我的岁岁年年</p>
+                        </div>
+                    </div>
+                </article>
+
+                <button type="button" class="primary-button secondary-width" id="refresh-button">再抽一束专属花束</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
